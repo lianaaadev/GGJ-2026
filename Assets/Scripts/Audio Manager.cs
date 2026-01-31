@@ -10,8 +10,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource seSource;
 
     // audio file path
-    public const string BGM_CITY = "Audios/Citylevelmusic";
-    public const string SE_FAIL = "Audios/failstatesound";
+    // BGM
+    public const string BGM_CITY = "Audios/CityLevelMusic";
+    public const string BGM_FIRSTLEVEL = "Audios/FirstLevelMusic";
+    public const string BGM_FINALLEVEL = "Audios/FinalLevelMusic";
+    // SE
+    public const string SE_CLICK = "Audios/ClickyClick";
+    public const string SE_JUMP = "Audios/JumpSound";
+    public const string SE_LANDING = "Audios/LandingSound";
+    public const string SE_FAIL = "Audios/FailStateSound";
+    public const string SE_SUCCESS = "Audios/SuccessSound";
 
     // Cache loaded clips (avoid repeated Resources.Load)
     Dictionary<string, AudioClip> clipCache = new();
