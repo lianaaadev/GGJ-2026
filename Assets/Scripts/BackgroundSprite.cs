@@ -47,7 +47,7 @@ public class BackgroundSprite : MonoBehaviour
         allMaskables = FindObjectsByType<ColorMaskable>(FindObjectsSortMode.None);
 
         UpdateColor();
-        UpdateAllMaskables();
+        // UpdateAllMaskables();
     }
 
     public void ReLoadMaskableObj()
@@ -82,9 +82,10 @@ public class BackgroundSprite : MonoBehaviour
     {
         PlatformColorType currentType = colorTypes[currentColorIndex];
 
-        foreach (ColorMaskable maskable in allMaskables)
-        {
-            maskable.UpdateVisibility(currentType);
-        }
+        if (allMaskables != null)
+            foreach (ColorMaskable maskable in allMaskables)
+            {
+                maskable.UpdateVisibility(currentType);
+            }
     }
 }
