@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -136,6 +135,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(respawnDelay);
 
+        ChangeLevel(currentLevel);
         // Reset and show player
         ResetToInitialState();
         if (playerSprite != null)

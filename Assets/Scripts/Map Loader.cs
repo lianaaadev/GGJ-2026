@@ -60,6 +60,9 @@ public class MapLoader : MonoBehaviour
     // Implementation for initializing the level based on lvl parameter
     public void InitLevel(int lvl)
     {
+        // start level with red background
+        BackgroundSprite.Instance.OnSwitch(0);
+        
         // Clear existing tiles
         for (int i = tileContainer.childCount - 1; i >= 0; i--)
             Destroy(tileContainer.GetChild(i).gameObject);
