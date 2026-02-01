@@ -168,11 +168,11 @@ public class MapLoader : MonoBehaviour
             case 21:
                 return code[1] == 11 ? COLOR_BLACK : COLOR_NULL;
             case 31:
-                return code[1] == 11 ? COLOR_RED : COLOR_GREEN;
+                return code[1] == 11 ? COLOR_RED : COLOR_MAGENTA;
             case 41:
                 return code[1] == 11 ? COLOR_ORANGE : COLOR_BLUE;
             case 51:
-                return code[1] == 11 ? COLOR_YELLOW : COLOR_MAGENTA;
+                return code[1] == 11 ? COLOR_YELLOW : COLOR_GREEN;
         }
         return COLOR_NULL;
     }
@@ -185,11 +185,11 @@ public class MapLoader : MonoBehaviour
             case 21:
                 return code[1] == 11 ? PlatformColorType.Black : PlatformColorType.Null;
             case 31:
-                return code[1] == 11 ? PlatformColorType.Red : PlatformColorType.Green;
+                return code[1] == 11 ? PlatformColorType.Red : PlatformColorType.Magenta;
             case 41:
                 return code[1] == 11 ? PlatformColorType.Orange : PlatformColorType.Blue;
             case 51:
-                return code[1] == 21 ? PlatformColorType.Yellow : PlatformColorType.Magenta;
+                return code[1] == 11 ? PlatformColorType.Yellow : PlatformColorType.Green;
         }
         return PlatformColorType.Null;
     }
