@@ -39,9 +39,17 @@ public class BackgroundSprite : MonoBehaviour
         UpdateAllMaskables();
     }
 
-    public void OnSwitch()
+    public void OnSwitch(int colorIndex)
     {
-        currentColorIndex = (currentColorIndex + 1) % colors.Length;
+        if (colorIndex < 0 || colorIndex >= colors.Length)
+        {
+            currentColorIndex = (currentColorIndex + 1) % colors.Length;
+        }
+        else
+        {
+            currentColorIndex = colorIndex;
+        }
+
         UpdateColor();
         UpdateAllMaskables();
     }

@@ -21,6 +21,8 @@ public class ColorSwapItem : MonoBehaviour
     [Tooltip("Delay before destroying (time to show pressed sprite)")]
     public float destroyDelay = 0.3f;
 
+    [Tooltip("Which color index the button will change it to (-1 if you want to cycle through colors instead)")]
+    public int colorIndex = -1;
 
 
 
@@ -41,13 +43,22 @@ public class ColorSwapItem : MonoBehaviour
         {
             if (pressedSprite != null && spriteRenderer != null)
             {
+                Sprite originalSprite = spriteRenderer.sprite;
                 spriteRenderer.sprite = pressedSprite;
-                StartCoroutine(HideSpriteAfterDelay());
+                if (destroyAfterCollection)
+                {
+                    StartCoroutine(HideSpriteAfterDelay());
+                }
+                else
+                {
+                    StartCoroutine(UnpressSpriteAfterDelay(originalSprite));
+                }
+
             }
 
             if (backgroundSprite != null)
             {
-                backgroundSprite.OnSwitch();
+                backgroundSprite.OnSwitch(colorIndex);
             }
 
             if (destroyAfterCollection)
@@ -65,4 +76,12 @@ public class ColorSwapItem : MonoBehaviour
             spriteRenderer.enabled = false;
         }
     }
+    IEnumerator UnpressSpriteAfterDelay(Sprite originalSprite)
+    {
+        yield return new WaitForSeconds(hideSpriteDelay);
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = originalSprite;
+        }
+    }    
 }
