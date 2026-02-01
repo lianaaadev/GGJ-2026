@@ -9,20 +9,20 @@ public class BackgroundSprite : MonoBehaviour
     public Color[] colors = new Color[]
     {
         Color.red,
-        Color.blue,
-        Color.green,
-        Color.yellow,
         Color.cyan,
+        Color.yellow,
+        Color.green,
+        Color.blue,
         Color.magenta
     };
 
     private PlatformColorType[] colorTypes = new PlatformColorType[]
     {
         PlatformColorType.Red,
-        PlatformColorType.Blue,
-        PlatformColorType.Green,
-        PlatformColorType.Yellow,
         PlatformColorType.Cyan,
+        PlatformColorType.Yellow,
+        PlatformColorType.Green,
+        PlatformColorType.Blue,
         PlatformColorType.Magenta
     };
 
