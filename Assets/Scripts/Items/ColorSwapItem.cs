@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ColorSwapItem : MonoBehaviour
 {
-    private ScreenColorMask colorMask;
+    private BackgroundSprite backgroundSprite;
     private SpriteRenderer spriteRenderer;
 
     [Header("Sprite Settings")]
@@ -21,17 +21,19 @@ public class ColorSwapItem : MonoBehaviour
     [Tooltip("Delay before destroying (time to show pressed sprite)")]
     public float destroyDelay = 0.3f;
 
+    [Tooltip("Which color index the button will change it to (-1 if you want to cycle through colors instead)")]
+    public int colorIndex = -1;
 
 
 
     void Start()
     {
-        colorMask = FindFirstObjectByType<ScreenColorMask>();
+        backgroundSprite = FindFirstObjectByType<BackgroundSprite>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (colorMask == null)
+        if (backgroundSprite == null)
         {
-            Debug.LogWarning("ColorSwapItem: No ScreenColorMask found in scene!");
+            Debug.LogWarning("ColorSwapItem: No BackgroundSprite found in scene!");
         }
     }
 
@@ -41,13 +43,22 @@ public class ColorSwapItem : MonoBehaviour
         {
             if (pressedSprite != null && spriteRenderer != null)
             {
+                Sprite originalSprite = spriteRenderer.sprite;
                 spriteRenderer.sprite = pressedSprite;
-                StartCoroutine(HideSpriteAfterDelay());
+                if (destroyAfterCollection)
+                {
+                    StartCoroutine(HideSpriteAfterDelay());
+                }
+                else
+                {
+                    StartCoroutine(UnpressSpriteAfterDelay(originalSprite));
+                }
+
             }
 
-            if (colorMask != null)
+            if (backgroundSprite != null)
             {
-                colorMask.OnSwitch();
+                backgroundSprite.OnSwitch(colorIndex);
             }
 
             if (destroyAfterCollection)
@@ -65,4 +76,12 @@ public class ColorSwapItem : MonoBehaviour
             spriteRenderer.enabled = false;
         }
     }
+    IEnumerator UnpressSpriteAfterDelay(Sprite originalSprite)
+    {
+        yield return new WaitForSeconds(hideSpriteDelay);
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = originalSprite;
+        }
+    }    
 }
