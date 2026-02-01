@@ -11,7 +11,7 @@ public class ScreenColorMask : MonoBehaviour
     [Range(0f, 1f)]
     public float opacity = 0.3f;
 
-    private int currentColorIndex = 1;
+    private int currentColorIndex = 0;
 
     // Maps index to color type (must match colors array order)
     private PlatformColorType[] colorTypes = new PlatformColorType[]
