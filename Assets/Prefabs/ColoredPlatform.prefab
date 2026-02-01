@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2192302951293865644}
   - component: {fileID: 6441324913446278410}
   - component: {fileID: 4125870101501236641}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ColoredPlatform
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -180,8 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorMaskable
   colorType: 1
-  renderer: {fileID: 1362254505000018536}
-  collider: {fileID: 3269013967619383078}
 --- !u!114 &4125870101501236641
 MonoBehaviour:
   m_ObjectHideFlags: 0
