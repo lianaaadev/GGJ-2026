@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
         playerSprite = player.GetComponent<SpriteRenderer>();
         playerRb = player.GetComponent<Rigidbody2D>();
 
-        ChangeLevel(currentLevel);
+        ChangeLevel(0);
     }
 
     // todo show game complete screen
@@ -57,7 +59,7 @@ public class GameManager : MonoBehaviour
         if (currentLevel >= maxLevel - 1)
         {
             Debug.Log("All levels completed! Restarting from level 0...");
-            ChangeLevel(0);
+            SceneManager.LoadScene("Credits Scene");
             return;
         }
         Debug.Log("Loading next level...");
