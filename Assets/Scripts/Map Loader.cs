@@ -24,6 +24,7 @@ public class MapLoader : MonoBehaviour
     [SerializeField] BackgroundSprite backgroundSprite;
     [SerializeField] GameObject tilePrefab;
     [SerializeField] Transform tileContainer;
+    Vector2 startingPlayerCoor = Vector2.zero;
     const string FILEPATH = "Maps/level one for real";
     const int BLOCK_SIZE = 8;
     List<LdtkLevel> gridTilesByLevel = new();
@@ -34,16 +35,14 @@ public class MapLoader : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        gridTilesByLevel.Clear();
+        gridTilesByLevel = ExtractGridTiles(FILEPATH);
     }
 
     void Start()
     {
         playerObj = GameManager.Instance.player.gameObject;
-        gridTilesByLevel.Clear();
-        gridTilesByLevel = ExtractGridTiles(FILEPATH);
-
-        // todo call init level with game manager
-        InitLevel(1);
     }
 
     public List<LdtkLevel> ExtractGridTiles(string jsonPath)
@@ -61,18 +60,20 @@ public class MapLoader : MonoBehaviour
         for (int i = tileContainer.childCount - 1; i >= 0; i--)
             Destroy(tileContainer.GetChild(i).gameObject);
 
-        // spawn tiles
-        SpawnTiles(lvl);
-
         // put player at start position
-        PutPlayerOnStartPt(lvl);
+        startingPlayerCoor = CalPlayerOnStartPt(lvl);
+        GameManager.Instance.StoreInitialState(Vector2.zero);
+        playerObj.transform.position = Vector2.zero;
+
+        // spawn tiles
+        SpawnTiles(lvl, startingPlayerCoor);
 
         backgroundSprite.ReLoadMaskableObj();
         tileContainer.gameObject.SetActive(true);
     }
 
     // Implementation for spawning tiles based on extracted data
-    public void SpawnTiles(int lvl)
+    public void SpawnTiles(int lvl, Vector2 startCoor)
     {
         if (lvl < 0 || lvl >= gridTilesByLevel.Count)
         {
@@ -89,7 +90,7 @@ public class MapLoader : MonoBehaviour
                 // todo check src to determine tile/ object, then spawn object (button)
 
                 // spawn platform
-                Vector2 position = new Vector2(tile.px[0] / BLOCK_SIZE, -tile.px[1] / BLOCK_SIZE);
+                Vector2 position = new Vector2(tile.px[0] / BLOCK_SIZE - startCoor.x, -tile.px[1] / BLOCK_SIZE - startCoor.y);
                 GameObject tileGO = Instantiate(tilePrefab, position, Quaternion.identity, tileContainer);
 
                 // Additional setup for tileGO can be done here
@@ -133,27 +134,21 @@ public class MapLoader : MonoBehaviour
         return PlatformColorType.Null;
     }
 
-    public void PutPlayerOnStartPt(int lvl)
+    public Vector2 CalPlayerOnStartPt(int lvl)
     {
         // put player at start position
         foreach (LdtkLayer layer in gridTilesByLevel[lvl].layerInstances)
         {
             if (layer.__identifier == "Entities")
             {
-                Debug.Log(layer.entityInstances);
                 if (layer.entityInstances != null && layer.entityInstances.Length > 0)
                 {
                     var entity = layer.entityInstances[0];
-                    Vector2 playerPos = new Vector2(entity.px[0] / BLOCK_SIZE, -entity.px[1] / BLOCK_SIZE);
-                    if (playerObj != null)
-                    {
-                        GameManager.Instance.StoreInitialState(playerPos);
-                        playerObj.transform.position = playerPos;
-                        return;
-                    }
+                    return new Vector2(entity.px[0] / BLOCK_SIZE, -entity.px[1] / BLOCK_SIZE);
                 }
             }
         }
+        return Vector2.zero;
     }
 
     [System.Serializable]

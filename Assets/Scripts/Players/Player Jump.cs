@@ -9,17 +9,18 @@ public class PlayerJump : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            playerMovement.isGrounded = true;
+            // playerMovement.isGrounded = true;
             AudioManager.Instance.PlaySE(AudioManager.SE_LANDING);
             currentCollider = collision;
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor") && collision == currentCollider)
-        {
-            playerMovement.isGrounded = false;
-        }
-    }
+    // void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     // if (collision.gameObject.CompareTag("Floor") && collision == currentCollider)
+    //     if (collision.gameObject.CompareTag("Floor"))
+    //     {
+    //         playerMovement.isGrounded = false;
+    //     }
+    // }
 }

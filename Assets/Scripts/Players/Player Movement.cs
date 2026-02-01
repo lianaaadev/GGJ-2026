@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     [SerializeField] float movementSpeed = 300f;
     [SerializeField] float jumpForce = 10f;
-    public bool isGrounded = true;
+    public bool isGrounded;
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = true;
         else if (moveInput.x > 0)
             spriteRenderer.flipX = false;
+
+        isGrounded = rb.linearVelocity.y == 0;
     }
 
     private void Jump()
