@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ColorSwapItem : MonoBehaviour
 {
-    private ScreenColorMask colorMask;
+    private BackgroundSprite backgroundSprite;
     private SpriteRenderer spriteRenderer;
 
     [Header("Sprite Settings")]
@@ -26,12 +26,12 @@ public class ColorSwapItem : MonoBehaviour
 
     void Start()
     {
-        colorMask = FindFirstObjectByType<ScreenColorMask>();
+        backgroundSprite = FindFirstObjectByType<BackgroundSprite>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (colorMask == null)
+        if (backgroundSprite == null)
         {
-            Debug.LogWarning("ColorSwapItem: No ScreenColorMask found in scene!");
+            Debug.LogWarning("ColorSwapItem: No BackgroundSprite found in scene!");
         }
     }
 
@@ -45,9 +45,9 @@ public class ColorSwapItem : MonoBehaviour
                 StartCoroutine(HideSpriteAfterDelay());
             }
 
-            if (colorMask != null)
+            if (backgroundSprite != null)
             {
-                colorMask.OnSwitch();
+                backgroundSprite.OnSwitch();
             }
 
             if (destroyAfterCollection)

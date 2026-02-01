@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1362254505000018536}
   - component: {fileID: 3269013967619383078}
   - component: {fileID: 2192302951293865644}
-  - component: {fileID: 8003616667735384830}
+  - component: {fileID: 6441324913446278410}
   m_Layer: 0
   m_Name: ColoredPlatform
   m_TagString: Untagged
@@ -166,7 +166,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8003616667735384830
+--- !u!114 &6441324913446278410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3733611690736368904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c4f110bd490944379aabbff31c0ab5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 684e9611b891f4638872f463b6e13ff6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColoredPlatform
-  colorType: 3
+  m_EditorClassIdentifier: Assembly-CSharp::ColorMaskable
+  colorType: 1
