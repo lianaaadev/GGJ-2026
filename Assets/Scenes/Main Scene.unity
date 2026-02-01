@@ -136,6 +136,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1639054756761728571}
     - target: {fileID: 5499925709505031651, guid: ea1b99ca120e9a94286f969d59677e9a, type: 3}
+      propertyPath: buttonPrefab
+      value: 
+      objectReference: {fileID: 1823720631349362017, guid: 3003565148df65c4782450f0f3803660, type: 3}
+    - target: {fileID: 5499925709505031651, guid: ea1b99ca120e9a94286f969d59677e9a, type: 3}
       propertyPath: tileContainer
       value: 
       objectReference: {fileID: 2081795126}
@@ -244,6 +248,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 314297803}
+    - target: {fileID: 1512013283819391415, guid: 6ba22d63da0494f49a63b2b36056f17f, type: 3}
+      propertyPath: currentLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1512013283819391415, guid: 6ba22d63da0494f49a63b2b36056f17f, type: 3}
       propertyPath: cameraTransform
       value: 

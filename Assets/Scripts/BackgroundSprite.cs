@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class BackgroundSprite : MonoBehaviour
 {
+    // instance
+    public static BackgroundSprite Instance { get; private set; }
+
     [Header("Color Settings")]
     public Color[] colors = new Color[]
     {
@@ -29,6 +32,14 @@ public class BackgroundSprite : MonoBehaviour
 
     public Color CurrentColor => colors[currentColorIndex];
     public PlatformColorType CurrentColorType => colorTypes[currentColorIndex];
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     void Start()
     {

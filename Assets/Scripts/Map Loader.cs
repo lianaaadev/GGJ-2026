@@ -22,6 +22,8 @@ public class MapLoader : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] BackgroundSprite backgroundSprite;
+    [SerializeField] GameObject buttonPrefab;
+    [SerializeField] List<ColorSwapItem> buttonList;
     [SerializeField] GameObject tilePrefab;
     [SerializeField] Transform tileContainer;
     Vector2 startingPlayerCoor = Vector2.zero;
@@ -82,22 +84,54 @@ public class MapLoader : MonoBehaviour
         }
 
         LdtkLevel level = gridTilesByLevel[lvl];
+        buttonList.Clear();
 
         foreach (LdtkLayer layer in level.layerInstances)
         {
             foreach (LdtkGridTile tile in layer.gridTiles)
             {
                 // todo check src to determine tile/ object, then spawn object (button)
-
-                // spawn platform
                 Vector2 position = new Vector2(tile.px[0] / BLOCK_SIZE - startCoor.x, -tile.px[1] / BLOCK_SIZE - startCoor.y);
-                GameObject tileGO = Instantiate(tilePrefab, position, Quaternion.identity, tileContainer);
+                if (isPlatform(tile.src))
+                {
+                    // spawn platform
+                    GameObject tileGO = Instantiate(tilePrefab, position, Quaternion.identity, tileContainer);
 
-                // Additional setup for tileGO can be done here
-                PlatformController platCon = tileGO.GetComponent<PlatformController>();
-                platCon.Init(position, GetColorWithCode(tile.src), GetColorTypeWithCode(tile.src));
+                    // Additional setup for tileGO can be done here
+                    PlatformController platCon = tileGO.GetComponent<PlatformController>();
+                    platCon.Init(position, GetColorWithCode(tile.src), GetColorTypeWithCode(tile.src));
+                }
+                else if (isButton(tile.src))
+                {
+                    // spawn buttons
+                    GameObject buttonGO = Instantiate(buttonPrefab, position, Quaternion.identity, tileContainer);
+                    ColorSwapItem colorSwapItem = buttonGO.GetComponent<ColorSwapItem>();
+                    buttonList.Add(colorSwapItem);
+                    colorSwapItem.Init(GetBtnColorIndexWithCode(tile.src), GetBtnDestroyAfterCollectionWithCode(tile.src));
+                }
             }
         }
+    }
+
+    bool isPlatform(int[] code)
+    {
+        if (code[1] == 11)
+            if (code[0] == 21 || code[0] == 31 || code[0] == 41)
+                return true;
+        if (code[1] == 21)
+            if (code[0] == 21 || code[0] == 31 || code[0] == 41 || code[0] == 51)
+                return true;
+        return false;
+    }
+
+    bool isButton(int[] code)
+    {
+        if (code[1] == 1 || code[1] == 31)
+            return true;
+        if (code[1] == 1)
+            if (code[0] == 1 || code[0] == 11)
+                return true;
+        return false;
     }
 
     // hard code color code ***might need to be changed
@@ -132,6 +166,44 @@ public class MapLoader : MonoBehaviour
                 return code[1] == 21 ? PlatformColorType.Green : PlatformColorType.Null;
         }
         return PlatformColorType.Null;
+    }
+
+    // hard code color code ***might need to be changed
+    int GetBtnColorIndexWithCode(int[] code)
+    {
+        switch (code[0])
+        {
+            case 1:
+                return 0;
+            case 11:
+                return 1;
+            case 21:
+                return 2;
+            case 31:
+                return 3;
+            case 41:
+                return 4;
+            case 51:
+                return 5;
+        }
+        return -1;
+    }
+
+    // hard code color code ***might need to be changed
+    bool GetBtnDestroyAfterCollectionWithCode(int[] code)
+    {
+        // switch (code[0])
+        // {
+        //     case 21:
+        //         return code[1] == 11 ? true : false;
+        //     case 31:
+        //         return code[1] == 11 ? true : false;
+        //     case 41:
+        //         return code[1] == 11 ? true : false;
+        //     case 51:
+        //         return code[1] == 21 ? true : false;
+        // }
+        return true;
     }
 
     public Vector2 CalPlayerOnStartPt(int lvl)
