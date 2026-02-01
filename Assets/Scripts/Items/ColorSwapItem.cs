@@ -71,6 +71,7 @@ public class ColorSwapItem : MonoBehaviour
 
             if (backgroundSprite != null)
             {
+                AudioManager.Instance.PlaySE(AudioManager.SE_CLICK);
                 backgroundSprite.OnSwitch(colorIndex);
             }
 

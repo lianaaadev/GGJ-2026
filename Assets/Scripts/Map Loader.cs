@@ -22,10 +22,11 @@ public class MapLoader : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] BackgroundSprite backgroundSprite;
+    [SerializeField] Transform tileContainer;
+    [SerializeField] GameObject tilePrefab;
+    [SerializeField] GameObject flagPrefab;
     [SerializeField] GameObject buttonPrefab;
     [SerializeField] List<ColorSwapItem> buttonList;
-    [SerializeField] GameObject tilePrefab;
-    [SerializeField] Transform tileContainer;
     [SerializeField] Transform deathZone;
     Vector2 startingPlayerCoor = Vector2.zero;
     const string FILEPATH = "Maps/level one for real";
@@ -114,11 +115,22 @@ public class MapLoader : MonoBehaviour
                     buttonList.Add(colorSwapItem);
                     colorSwapItem.Init(GetBtnColorIndexWithCode(tile.src), GetBtnDestroyAfterCollectionWithCode(tile.src));
                 }
+                else if (isFlag(tile.src))
+                {
+                    // spawn flag
+                    Instantiate(flagPrefab, position, Quaternion.identity, tileContainer);
+                }
             }
         }
-        
+
         // put death zone under lowest platform
         deathZone.position = new Vector2(0, lowestY - 10f);
+    }
+
+    // todo find flag code
+    bool isFlag(int[] code)
+    {
+        return code[0] == 51 && code[1] == 51;
     }
 
     bool isPlatform(int[] code)

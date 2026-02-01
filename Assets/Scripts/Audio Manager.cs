@@ -11,8 +11,8 @@ public class AudioManager : MonoBehaviour
 
     // audio file path
     // BGM
-    public const string BGM_CITY = "Audios/CityLevelMusic";
     public const string BGM_FIRSTLEVEL = "Audios/FirstLevelMusic";
+    public const string BGM_CITY = "Audios/CityLevelMusic";
     public const string BGM_FINALLEVEL = "Audios/FinalLevelMusic";
     // SE
     public const string SE_CLICK = "Audios/ClickyClick";

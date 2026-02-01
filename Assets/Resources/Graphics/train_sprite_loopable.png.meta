@@ -1,22 +1,16 @@
 fileFormatVersion: 2
-guid: c5e5b9f4389684ba4876432dd8276ca1
+guid: 4f3384c39d405bb41b33830a21ff25e6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3112719908037856012
-    second: trainstation_sprite_0
+      213: -5389231644143851264
+    second: train_sprite_loopable_0
   - first:
-      213: 8735289316045935631
-    second: trainstation_sprite_1
+      213: -267260901756500129
+    second: train_sprite_loopable_1
   - first:
-      213: 2760427101656002494
-    second: trainstation_sprite_2
-  - first:
-      213: -3589637111406391974
-    second: trainstation_sprite_3
-  - first:
-      213: -4848324798555067467
-    second: trainstation_sprite_4
+      213: -1684817851638314323
+    second: train_sprite_loopable_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,17 +102,52 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: trainstation_sprite_0
+      name: train_sprite_loopable_0
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 876
+        width: 454
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 009e28e7f5a9535b0800000000000000
+      internalID: -5389231644143851264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: train_sprite_loopable_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1670
-        height: 1080
+        y: 113
+        width: 3400
+        height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c0b02e3b34a923b20800000000000000
-      internalID: 3112719908037856012
+      spriteID: f57047830af7a4cf0800000000000000
+      internalID: -267260901756500129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trainstation_sprite_1
+      name: train_sprite_loopable_2
       rect:
         serializedVersion: 2
-        x: 1878
-        y: 308
-        width: 383
-        height: 772
+        x: 0
+        y: 19
+        width: 3400
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,74 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f04de25f95bf93970800000000000000
-      internalID: 8735289316045935631
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: trainstation_sprite_2
-      rect:
-        serializedVersion: 2
-        x: 2476
-        y: 318
-        width: 385
-        height: 762
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ebf2196d2d10f4620800000000000000
-      internalID: 2760427101656002494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: trainstation_sprite_3
-      rect:
-        serializedVersion: 2
-        x: 3076
-        y: 324
-        width: 387
-        height: 756
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a5d001ed01c0f2ec0800000000000000
-      internalID: -3589637111406391974
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: trainstation_sprite_4
-      rect:
-        serializedVersion: 2
-        x: 3677
-        y: 327
-        width: 386
-        height: 753
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5bb6862884a47bcb0800000000000000
-      internalID: -4848324798555067467
+      spriteID: daa8cd927135e98e0800000000000000
+      internalID: -1684817851638314323
       vertices: []
       indices: 
       edges: []
@@ -225,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -235,11 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      trainstation_sprite_0: 3112719908037856012
-      trainstation_sprite_1: 8735289316045935631
-      trainstation_sprite_2: 2760427101656002494
-      trainstation_sprite_3: -3589637111406391974
-      trainstation_sprite_4: -4848324798555067467
+      train_sprite_loopable_0: -5389231644143851264
+      train_sprite_loopable_1: -267260901756500129
+      train_sprite_loopable_2: -1684817851638314323
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

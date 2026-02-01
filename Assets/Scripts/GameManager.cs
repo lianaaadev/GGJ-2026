@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,15 @@ public class GameManager : MonoBehaviour
 
     public bool IsDead { get; private set; } = false;
 
+    [Header("Level Settings")]
     public int currentLevel = 1;
+    public int maxLevel = 3;
+    [SerializeField] Sprite lvl1BG;
+    [SerializeField] Vector2 lvl1BGScale;
+    [SerializeField] Sprite lvl2BG;
+    [SerializeField] Vector2 lvl2BGScale;
+    [SerializeField] Sprite lvl3BG;
+    [SerializeField] Vector2 lvl3BGScale;
 
     void Awake()
     {
@@ -40,6 +49,50 @@ public class GameManager : MonoBehaviour
         playerSprite = player.GetComponent<SpriteRenderer>();
         playerRb = player.GetComponent<Rigidbody2D>();
 
+        ChangeLevel(currentLevel);
+    }
+
+    // todo show game complete screen
+    public void OnLevelComplete()
+    {
+        if (currentLevel >= maxLevel - 1)
+        {
+            Debug.Log("All levels completed! Restarting from level 0...");
+            ChangeLevel(0);
+            return;
+        }
+        Debug.Log("Loading next level...");
+        ChangeLevel(currentLevel + 1);
+    }
+
+    // call when changing levels
+    public void ChangeLevel(int lvl)
+    {
+        currentLevel = lvl;
+        SpriteRenderer sr = BackgroundSprite.Instance.GetComponent<SpriteRenderer>();
+        switch (currentLevel)
+        {
+            case 0:
+                AudioManager.Instance.PlayBGM(AudioManager.BGM_FIRSTLEVEL);
+                break;
+            case 1:
+                AudioManager.Instance.PlayBGM(AudioManager.BGM_CITY);
+                break;
+            case 2:
+                AudioManager.Instance.PlayBGM(AudioManager.BGM_FINALLEVEL);
+                break;
+            default:
+                AudioManager.Instance.PlayBGM(AudioManager.BGM_FIRSTLEVEL);
+                break;
+        }
+        sr.sprite =
+            currentLevel == 0 ? lvl1BG :
+            currentLevel == 1 ? lvl2BG :
+            currentLevel == 2 ? lvl3BG : lvl1BG;
+        sr.size =
+            currentLevel == 0 ? lvl1BGScale :
+            currentLevel == 1 ? lvl2BGScale :
+            currentLevel == 2 ? lvl3BGScale : lvl1BGScale;
         MapLoader.Instance.InitLevel(currentLevel);
     }
 
